@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../Java_3_2019_03_07_part1/Java_3_2019_03_07_part1.iml" filepath="$PROJECT_DIR$/../../Java_3_2019_03_07_part1/Java_3_2019_03_07_part1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Person-Client-Server.iml" filepath="$PROJECT_DIR$/Person-Client-Server.iml" />
     </modules>
   </component>
