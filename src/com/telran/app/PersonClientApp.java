@@ -20,25 +20,21 @@ public class PersonClientApp {
                         String lName = cio.readString("Type lastname ");
                         String phone = cio.readString("Type phone ");
                         boolean res = client.sendAddPersonRequest(new Person(id, fName, lName, phone));
-                        cio.writeLine("Operation add is " + res);
+                        String str = res ? "Person was added" : "Operation failed, wrong ID";
+                        cio.writeLine(str);
                     }),
                     Item.of("Remove person by id", io -> {
                         int id = cio.readInt("Type person id ");
                         boolean res = client.sendRemovePerson(id);
-                        if (res) {
-                            cio.writeLine(String.format("Person with id %d was deleted", id));
-                        } else {
-                            cio.writeLine(String.format("Person with id %d wasn't found", id));
-                        }
+                        String str = res ? String.format("Person with id %d was deleted", id)
+                                : String.format("Person with id %d wasn't found", id);
+                        cio.writeLine(str);
                     }),
                     Item.of("Get person by id", io -> {
                         int id = cio.readInt("Type person id ");
                         Person res = client.sendGetPersonById(id);
-                        if (res != null) {
-                            cio.writeLine(res);
-                        } else {
-                            cio.writeLine(String.format("Person with id %d wasn't found", id));
-                        }
+                        String str = res != null ? res.toString() : String.format("Person with id %d wasn't found", id);
+                        cio.writeLine(str);
                     }),
                     Item.exit()
             );

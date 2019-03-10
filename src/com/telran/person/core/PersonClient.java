@@ -2,7 +2,6 @@ package com.telran.person.core;
 
 import com.telran.net.client.TcpClient;
 import com.telran.person.dto.Person;
-import com.telran.protocol.ProtocolResponse;
 
 import java.io.IOException;
 

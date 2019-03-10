@@ -24,9 +24,6 @@ public class TcpClient implements Closeable {
         try {
             output.writeObject(request);
             ProtocolResponse response = (ProtocolResponse) input.readObject();
-            if (response.code != ProtocolResponse.Code.OK) {
-                throw new RuntimeException(response.code.toString());
-            }
             return (T) response.data;
         } catch (Exception e) {
             throw new  RuntimeException(e.getMessage());

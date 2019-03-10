@@ -62,7 +62,7 @@ public class PersonProtocol implements Protocol {
         int id = (int) request.data;
         Person toFind = indexOf(id);
         if (toFind == null) {
-            return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, id);
+            return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, toFind);
         }
         return new ProtocolResponse(ProtocolResponse.Code.OK, toFind);
     }
