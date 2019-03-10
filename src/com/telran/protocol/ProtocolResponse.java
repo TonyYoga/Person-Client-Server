@@ -3,8 +3,8 @@ package com.telran.protocol;
 import java.io.Serializable;
 
 public class ProtocolResponse implements Serializable{
-    Code code;
-    Serializable data;
+    public Code code;
+    public Serializable data;
 
     public ProtocolResponse(Code code, Serializable data) {
         this.code = code;
@@ -19,7 +19,7 @@ public class ProtocolResponse implements Serializable{
                 '}';
     }
 
-    enum Code {
+    public enum Code {
         OK, WRONG_REQUEST, UNKNOWN
     }
 
