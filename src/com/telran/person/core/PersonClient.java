@@ -14,17 +14,17 @@ public class PersonClient extends TcpClient {
     }
 
     public boolean sendAddPersonRequest(Person data) {
-        ProtocolResponse response = sendRequest(PersonApi.RequestType.ADD_PERSON, data);
-        return response.code == ProtocolResponse.Code.OK;
+        boolean response = sendRequest(PersonApi.RequestType.ADD_PERSON, data);
+        return response;
     }
 
     public boolean sendRemovePerson(int id) {
-        ProtocolResponse response = sendRequest(PersonApi.RequestType.REMOVE_PERSON, id);
-        return response.code == ProtocolResponse.Code.OK;
+        boolean response = sendRequest(PersonApi.RequestType.REMOVE_PERSON, id);
+        return response;
     }
 
     public Person sendGetPersonById(int id) {
-        ProtocolResponse response = sendRequest(PersonApi.RequestType.GET_BY_ID, id);
-        return response.code == ProtocolResponse.Code.OK ? (Person) response.data : null;
+        Person response = sendRequest(PersonApi.RequestType.GET_BY_ID, id);
+        return response;
     }
 }

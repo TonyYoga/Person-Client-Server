@@ -26,9 +26,9 @@ public class PersonClientApp {
                         int id = cio.readInt("Type person id ");
                         boolean res = client.sendRemovePerson(id);
                         if (res) {
-                            cio.writeLine(String.format("Person with %d id was deleted"));
+                            cio.writeLine(String.format("Person with id %d was deleted", id));
                         } else {
-                            cio.writeLine(String.format("Person with %d id wasn't found"));
+                            cio.writeLine(String.format("Person with id %d wasn't found", id));
                         }
                     }),
                     Item.of("Get person by id", io -> {
@@ -37,7 +37,7 @@ public class PersonClientApp {
                         if (res != null) {
                             cio.writeLine(res);
                         } else {
-                            cio.writeLine(String.format("Person with %d id wasn't found"));
+                            cio.writeLine(String.format("Person with id %d wasn't found", id));
                         }
                     }),
                     Item.exit()

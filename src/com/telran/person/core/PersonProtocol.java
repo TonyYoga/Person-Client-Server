@@ -41,28 +41,39 @@ public class PersonProtocol implements Protocol {
 
     private ProtocolResponse addPerson(ProtocolRequest request) {
         Person person = (Person) request.data;
-        if (person == null) {
-            return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, person);
+        if (person == null || indexOf(person.getId()) != null) {
+            return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, false);
         }
         persons.add(person);
-        return new ProtocolResponse(ProtocolResponse.Code.OK, person);
+        return new ProtocolResponse(ProtocolResponse.Code.OK, true);
     }
 
     private ProtocolResponse removePerson(ProtocolRequest request) {
         int id = (int) request.data;
-        if (id < 0 || id >= persons.size()) {
-            return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, id);
+        Person toFind = indexOf(id);
+        if (toFind == null) {
+            return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, false);
         }
-        Person person = persons.remove(id);
-        return new ProtocolResponse(ProtocolResponse.Code.OK, person);
+        persons.remove(toFind);
+        return new ProtocolResponse(ProtocolResponse.Code.OK, true);
     }
 
     private ProtocolResponse getPersonById(ProtocolRequest request) {
         int id = (int) request.data;
-        if (id < 0 || id >= persons.size()) {
+        Person toFind = indexOf(id);
+        if (toFind == null) {
             return new ProtocolResponse(ProtocolResponse.Code.WRONG_REQUEST, id);
         }
-        Person person = persons.get(id);
-        return new ProtocolResponse(ProtocolResponse.Code.OK, person);
+        return new ProtocolResponse(ProtocolResponse.Code.OK, toFind);
+    }
+
+    private Person indexOf(int personId) {
+        if (personId < 0) {
+            return null;
+        }
+        return persons.stream()
+                .filter(person -> person.getId() == personId)
+                .findFirst().orElse(null);
+
     }
 }

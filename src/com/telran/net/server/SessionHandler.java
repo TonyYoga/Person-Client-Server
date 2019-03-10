@@ -25,7 +25,9 @@ public class SessionHandler {
              ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream())) {
             while (true) {
                 ProtocolRequest request = (ProtocolRequest) input.readObject();
+                System.out.println("Client: " + socket.getRemoteSocketAddress() + "\n\t" + request);
                 ProtocolResponse response = protocol.getResponse(request);
+                System.out.println("\t" + response);
                 output.writeObject(response);
                 output.reset();
             }
@@ -33,7 +35,7 @@ public class SessionHandler {
         } catch (SocketException e) {
             System.out.println("Client closed connection!");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("error: " + e.getMessage());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

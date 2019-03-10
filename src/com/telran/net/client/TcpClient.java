@@ -13,12 +13,13 @@ public class TcpClient implements Closeable {
 
     public TcpClient(String host, int port) throws IOException {
         socket = new Socket(host, port);
-        System.out.println("Client starting on port" + socket.getLocalPort());
-        input = new ObjectInputStream(socket.getInputStream());
+        System.out.println("Client starting on port " + socket.getLocalPort());
         output = new ObjectOutputStream(socket.getOutputStream());
+        input = new ObjectInputStream(socket.getInputStream());
+
     }
 
-    public <T> T sendRequest(String type, Serializable data) {
+    protected  <T> T sendRequest(String type, Serializable data) {
         ProtocolRequest request = new ProtocolRequest(type, data);
         try {
             output.writeObject(request);
