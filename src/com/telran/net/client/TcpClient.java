@@ -7,9 +7,9 @@ import java.io.*;
 import java.net.Socket;
 
 public class TcpClient implements Closeable {
-    Socket socket;
-    protected ObjectInputStream input;
-    protected ObjectOutputStream output;
+    private Socket socket;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
 
     public TcpClient(String host, int port) throws IOException {
         socket = new Socket(host, port);

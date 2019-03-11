@@ -13,17 +13,14 @@ public class PersonClient extends TcpClient {
     }
 
     public boolean sendAddPersonRequest(Person data) {
-        boolean response = sendRequest(PersonApi.RequestType.ADD_PERSON, data);
-        return response;
+        return sendRequest(PersonApi.RequestType.ADD_PERSON, data);
     }
 
     public boolean sendRemovePerson(int id) {
-        boolean response = sendRequest(PersonApi.RequestType.REMOVE_PERSON, id);
-        return response;
+        return sendRequest(PersonApi.RequestType.REMOVE_PERSON, id);
     }
 
     public Person sendGetPersonById(int id) {
-        Person response = sendRequest(PersonApi.RequestType.GET_BY_ID, id);
-        return response;
+        return sendRequest(PersonApi.RequestType.GET_BY_ID, id);
     }
 }

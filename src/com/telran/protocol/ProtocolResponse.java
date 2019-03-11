@@ -3,7 +3,7 @@ package com.telran.protocol;
 import java.io.Serializable;
 
 public class ProtocolResponse implements Serializable{
-    public Code code;
+    private Code code;
     public Serializable data;
 
     public ProtocolResponse(Code code, Serializable data) {

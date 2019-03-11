@@ -5,9 +5,7 @@ import com.telran.protocol.Protocol;
 import com.telran.protocol.ProtocolRequest;
 import com.telran.protocol.ProtocolResponse;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -31,7 +29,8 @@ public class PersonProtocol implements Protocol {
             String type = request.type;
             Function<ProtocolRequest, ProtocolResponse> mappedFunction = mapper.get(type);
             if (mappedFunction == null) {
-                return new ProtocolResponse(ProtocolResponse.Code.UNKNOWN, request);
+//                return new ProtocolResponse(ProtocolResponse.Code.UNKNOWN, request);
+                throw new Exception("Wrong request type " + type);
             }
             return mappedFunction.apply(request);
         } catch (Exception e) {
